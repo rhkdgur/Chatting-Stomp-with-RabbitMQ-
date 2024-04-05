@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: pratice
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+server:
+  port: 8181
+
+logging:
+  level:
+    root: info
+
+rabbitmq:
+  queue:
+    name: sample.name
+  exchange:
+    name: sample.exchange
+  routing:
+    key: sample.key
