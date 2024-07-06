@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  rabbitmq :
+    image: rabbitmq:3.11.10-management
+    container_name: rabbitmq-chat
+#    volumes:
+#      - ./rabbitmq/etc/:/etc/rabbitmq/
+#      - ./rabbitmq/data/:/var/lib/rabbitmq/
+#      - ./rabbitmq/logs/:/var/log/rabbitmq/
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+      - "61613:61613"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_PLUGINS: 'rabbitmq_management'

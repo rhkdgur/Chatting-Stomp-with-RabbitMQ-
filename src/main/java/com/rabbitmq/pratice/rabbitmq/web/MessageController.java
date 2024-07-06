@@ -1,13 +1,18 @@
 package com.rabbitmq.pratice.rabbitmq.web;
 
-import com.rabbitmq.pratice.rabbitmq.service.MessageDto;
+import com.rabbitmq.pratice.rabbitmq.domain.ChatMessage;
 import com.rabbitmq.pratice.rabbitmq.service.RabbitMqService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.async.DeferredResult;
 
 /**
  * packageName    : com.rabbitmq.pratice.rabbitmq.web
@@ -20,15 +25,23 @@ import org.springframework.web.bind.annotation.RestController;
  * -----------------------------------------------------------
  * 2024/04/06        GAMJA       최초 생성
  */
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class MessageController {
 
     private final RabbitMqService rabbitMqService;
 
-    @PostMapping("/send/message")
-    public ResponseEntity<?> sendMessage(final @RequestBody MessageDto messageDto) {
+    @MessageMapping("chat.enter.{roomId}")
+    public void sendEnter(final @RequestBody ChatMessage messageDto, @DestinationVariable String roomId) {
+        messageDto.setRoomId(roomId);
+        messageDto.setMessage("입장하셨습니다.");
         rabbitMqService.sendMessage(messageDto);
-        return ResponseEntity.ok("Message send to Ok");
+    }
+
+    @MessageMapping("chat.message.{roomId}")
+    public void sendMessage(final @RequestBody ChatMessage messageDto,@DestinationVariable String roomId) {
+        messageDto.setRoomId(roomId);
+        rabbitMqService.sendMessage(messageDto);
     }
 }
