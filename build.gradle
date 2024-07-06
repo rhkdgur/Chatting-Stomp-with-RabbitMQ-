@@ -22,12 +22,24 @@ repositories {
 }
 
 dependencies {
+
+    //외부 브로커 사용
+    implementation "org.springframework.boot:spring-boot-starter-reactor-netty";
+
     //RabbitMQ
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
     testImplementation 'org.springframework.amqp:spring-rabbit-test'
 
+    //stomp 웹소켓 채팅
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.webjars:sockjs-client:1.5.1'
+    implementation 'org.webjars:stomp-websocket:2.3.4'
+
+    //thymeleaf
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
     //mongodb
-   // implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 
     //spring boot
     implementation 'org.springframework.boot:spring-boot-starter-web'

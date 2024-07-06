@@ -2,14 +2,26 @@ spring:
   application:
     name: pratice
 
+  data:
+    mongodb:
+      uri: mongodb://root:root@localhost:20030/?authSource=admin
+      database: chatting
+
   rabbitmq:
     host: localhost
     port: 5672
     username: guest
     password: guest
 
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+
+#  mvc:
+#    static-path-pattern: "/static/**"
+
 server:
-  port: 8181
+  port: 8080
 
 logging:
   level:
@@ -17,8 +29,10 @@ logging:
 
 rabbitmq:
   queue:
-    name: sample.name
+    name: chat.queue
   exchange:
-    name: sample.exchange
-  routing:
-    key: sample.key
+    name: chat.exchange
+
+# 채팅 경로
+chat:
+    path: http://localhost:8080

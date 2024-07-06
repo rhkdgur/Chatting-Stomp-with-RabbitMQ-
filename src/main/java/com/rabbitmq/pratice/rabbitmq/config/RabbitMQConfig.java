@@ -1,9 +1,11 @@
 package com.rabbitmq.pratice.rabbitmq.config;
 
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.DirectExchange;
-import org.springframework.amqp.core.Queue;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.springframework.amqp.core.*;
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
+import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -26,6 +28,7 @@ import org.springframework.context.annotation.Configuration;
  * 2024/04/06        GAMJA       최초 생성
  */
 @Configuration
+@EnableRabbit
 public class RabbitMQConfig {
 
     @Value("${spring.rabbitmq.host}")
@@ -46,8 +49,8 @@ public class RabbitMQConfig {
     @Value("${rabbitmq.exchange.name}")
     private String exchangeName;
 
-    @Value("${rabbitmq.routing.key}")
-    private String routingKey;
+//    @Value("${rabbitmq.routing.key}")
+//    private String routingKey;
 
     /**
      * rabbitmq 에서 제공하는 Queue 선언
@@ -55,7 +58,7 @@ public class RabbitMQConfig {
      */
     @Bean
     public Queue queue() {
-        return new Queue(queueName);
+        return new Queue(queueName,false);
     }
 
     /**
@@ -63,8 +66,8 @@ public class RabbitMQConfig {
      * @return
      */
     @Bean
-    public DirectExchange exchange(){
-        return new DirectExchange(exchangeName);
+    public TopicExchange exchange(){
+        return new TopicExchange(exchangeName);
     }
 
     /**
@@ -74,8 +77,16 @@ public class RabbitMQConfig {
      * @return
      */
     @Bean
-    public Binding binding(Queue queue, DirectExchange exchange){
-        return BindingBuilder.bind(queue).to(exchange).with(routingKey);
+    public Binding binding(Queue queue, TopicExchange exchange){
+        return BindingBuilder.bind(queue).to(exchange).with("chat.room.#");
+    }
+
+    @Bean
+    public SimpleRabbitListenerContainerFactory simpleRabbitListenerContainerFactory (ConnectionFactory connectionFactory) {
+        final SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
+        factory.setConnectionFactory(connectionFactory);
+        factory.setMessageConverter(jackson2JsonMessageConverter());
+        return factory;
     }
 
     /**
@@ -111,7 +122,10 @@ public class RabbitMQConfig {
      */
     @Bean
     public MessageConverter jackson2JsonMessageConverter() {
-        return new Jackson2JsonMessageConverter();
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,true);
+        objectMapper.registerModule(new JavaTimeModule());
+        return new Jackson2JsonMessageConverter(objectMapper);
     }
 
 }

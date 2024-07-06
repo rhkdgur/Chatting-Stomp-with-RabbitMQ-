@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카카오톡 채팅창</title>
+    <link rel="stylesheet" th:href="@{/css/chatroom.css}">
+</head>
+<body>
+    <div class="chat-container">
+        <header class="chat-header">
+            <a href="/chat/rooms" class="back-btn">목록으로</a>
+            <h1>[[${room.name}]]</h1>
+        </header>
+        <div class="chat-messages" id="msgArea">
+            <div th:each="result : ${list}">
+                <div class='message left' th:if="${result.writer != loginId}">
+                    <div class='message-content'>
+                        <p> [[${result.writer}]] : [[${result.message}]] </p>
+                        <span class='message-time'></span>
+                    </div>
+                </div>
+
+                <div class='message right' th:if="${result.writer == loginId}">
+                    <div class='message-content'>
+                        <p> [[${result.writer}]] : [[${result.message}]] </p>
+                        <span class='message-time'></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-input">
+            <!--<input type="text" id="nickname" placeholder="이름" style="width: 5px">-->
+            <input type="text" id="msg" placeholder="메세지" value=""/>
+            <button type="button" id="button-send">전송</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    $(document).ready(function(){
+
+        let roomId = [[${room.id}]];
+        let username = [[${loginId}]];
+
+        let sockJs = new SockJS("/stomp/chat");
+        //1. SockJS를 내부에 들고있는 stomp를 내어줌
+        let stomp = Stomp.over(sockJs);
+
+        //2. connection이 맺어지면 실행
+        stomp.connect({}, function (){
+           console.log("STOMP Connection")
+
+           //4. subscribe(path, callback)으로 메세지를 받을 수 있음
+           stomp.subscribe("/exchange/chat.exchange/chat.room." + roomId, function (chat) {
+               let content = JSON.parse(chat.body);
+
+		
+               let writer = content.writer;
+               let message = content.message;
+               let gubun = content.gubun;
+               let str = '';
+
+               if(gubun === 'enter') {
+                   str = " <div class='message center'>";
+                   str += "<div class='message-content'><p>"+ writer + " : " + message+"</p>";
+                   str += "<hr class='join-divider'></div></div>";
+                   $("#msgArea").append(str);
+               }else{
+                   if(writer === username){
+                       str = " <div class='message right'>";
+                       str += "<div class='message-content'><p>"+ writer + " : " + message+"</p>";
+                       str += "<span class='message-time'></span></div></div>";
+                       $("#msgArea").append(str);
+                   }else{
+                       str = " <div class='message left'>";
+                       str += "<div class='message-content'><p>"+ writer + " : " + message+"</p>";
+                       str += "<span class='message-time'></span></div></div>";
+                       $("#msgArea").append(str);
+                   }
+               }
+               $("#msgArea").scrollTop = $("#msgArea").scrollHeight;
+           });
+
+           //3. send(path, header, message)로 메세지를 보낼 수 있음
+           stomp.send('/pub/chat.enter.'+roomId, {}, JSON.stringify({roomId: roomId, writer: username, gubun : 'enter'}))
+        });
+
+        $("#button-send").on({
+            click: function() {
+                enter();
+            }
+        });
+
+        $("#msg").keypress(function (event){
+            if (event.keyCode === 13) {
+                enter();
+            }
+        });
+
+        function enter() {
+            let msg = document.getElementById("msg");
+            stomp.send('/pub/chat.message.'+roomId, {}, JSON.stringify({roomId: roomId, message: msg.value, writer: username, gubun : 'message'}));
+            msg.value = '';
+        }
+    });
+     /*]]>*/
+</script>

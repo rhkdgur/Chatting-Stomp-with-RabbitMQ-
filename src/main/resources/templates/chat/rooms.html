@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카카오톡 채팅방 목록</title>
+    <link rel="stylesheet" th:href="@{/css/chatrooms.css}">
+</head>
+<body>
+<div class="chat-list-container">
+    <div class="chat-header">
+        <h2>채팅</h2>
+        <button class="create-chat-btn" onclick="openCreateRoomModal()">방 생성</button>
+    </div>
+    <div class="chat-list" >
+        <div th:each="room : ${list}">
+            <div th:onclick="return moveView([[${room.id}]]);" class="chat-room" style="cursor: pointer">
+                <div class="chat-room-info">
+                    <div class="chat-room-name">[[${room.name}]]</div>
+                    <div class="chat-room-last-message">마지막 메시지...</div>
+                </div>
+                <div class="chat-room-time">[[${room.createDate}]]</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for creating a chat room -->
+<div class="modal" id="createRoomModal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeCreateRoomModal()">&times;</span>
+        <h2>채팅방 생성</h2>
+        <form th:action="@{/chat/room/create}" method="post" onsubmit="return createRoom();">
+            <input type="text" id="roomTitleInput" name="name" placeholder="채팅방 제목을 입력하세요...">
+            <button class="submit-btn">개설하기</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script th:inline="javascript">
+
+    function moveView(roomId) {
+        let value = prompt("이름을 넣어주세요.");
+        if(value === null){
+            return false;
+        }
+        location.href="/chat/room?roomId="+roomId+"&login="+value;
+    }
+    function openCreateRoomModal() {
+        document.getElementById('createRoomModal').style.display = 'block';
+    }
+
+    function closeCreateRoomModal() {
+        document.getElementById('createRoomModal').style.display = 'none';
+    }
+
+    function createRoom() {
+        const roomTitle = document.getElementById('roomTitleInput').value;
+        if (roomTitle) {
+            closeCreateRoomModal();
+            return true;
+        } else {
+            alert('채팅방 제목을 입력하세요.');
+            return false;
+        }
+    }
+</script>
