@@ -1,7 +1,9 @@
 # ![icons8-채팅-36](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/assets/67618667/3509ba75-4eec-4829-9516-4b77a3ff84db) Stomp 와 RabbitMQ를 이용한 채팅방 만들기
 채팅(Chatting) 사이드 프로젝트입니다. 
 
+## 채팅방 DEGINE
 
+![image](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/assets/67618667/5ff5f5aa-909a-4fea-ac2a-938876768c79)
 
 ## ![icons8-채팅-36](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/assets/67618667/3509ba75-4eec-4829-9516-4b77a3ff84db) 프로젝트 목표
 - `Spring 과 RabbitMQ`를 이용하여 `Message Queue` 실습이 목표
