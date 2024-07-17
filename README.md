@@ -21,7 +21,7 @@
 
 ## ![icons8-채팅-36](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/assets/67618667/3509ba75-4eec-4829-9516-4b77a3ff84db) 작업 회고
 
-* Message Queue 이론 설명 (작성중)
+* Message Queue 설명 선택 이유 (작성중)
 * Message QUeue와 WebSocket을 같이 사용해보려는 이유 (작성중)
 * Message Queue 환경 설정 어려웠던 것들 (작성중)
 * 채팅 설정 과정에서 발생한 오류들에 대한 정리 (작성중)
