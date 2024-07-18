@@ -19,6 +19,14 @@
 `2024-03-25` ~
 
 
+## ![icons8-채팅-36](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/assets/67618667/3509ba75-4eec-4829-9516-4b77a3ff84db) RabbitMQ 인터페이스
+![image](https://github.com/user-attachments/assets/90b50444-043d-4198-8993-c9e3f14fa64c)
+
+
+## ![icons8-채팅-36](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/assets/67618667/3509ba75-4eec-4829-9516-4b77a3ff84db) RabbitMQ Docker 로그
+![image](https://github.com/user-attachments/assets/a0a2e097-f5c8-412f-bbf9-ff7b3469a86f)
+
+
 ## ![icons8-채팅-36](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/assets/67618667/3509ba75-4eec-4829-9516-4b77a3ff84db) 작업 회고
 
 * [Message Qeue에 대한 이론 정리](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/wiki/Message-Queue%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%EB%A1%A0-%EC%A0%95%EB%A6%AC)
