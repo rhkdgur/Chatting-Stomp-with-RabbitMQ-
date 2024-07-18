@@ -57,8 +57,8 @@ public class RabbitMQConfig {
      * @return
      */
     @Bean
-    public Queue queue() {
-        return new Queue(queueName,false);
+    public Queue chatQueue() {
+        return new Queue(queueName,true);
     }
 
     /**
@@ -72,13 +72,13 @@ public class RabbitMQConfig {
 
     /**
      * exchange 와 queue 사이의 바인딩을 하기 위한 라우팅키를 사용하여 빈 생성
-     * @param queue
+     * @param chatQueue
      * @param exchange
      * @return
      */
     @Bean
-    public Binding binding(Queue queue, TopicExchange exchange){
-        return BindingBuilder.bind(queue).to(exchange).with("chat.room.#");
+    public Binding binding(Queue chatQueue, TopicExchange exchange){
+        return BindingBuilder.bind(chatQueue).to(exchange).with("chat.room.#");
     }
 
     @Bean
