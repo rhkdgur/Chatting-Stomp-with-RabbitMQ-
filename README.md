@@ -13,6 +13,10 @@
 - MongoDB @Transactional 이용하여 구현
 
 
+## ![icons8-채팅-36](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/assets/67618667/3509ba75-4eec-4829-9516-4b77a3ff84db) ISSUE
+- 채팅에서 입력한 값을 `topic exchange`로 설정하여 전달하였지만 `queue 결과값`을 `@RabbitListener` 로 받지 못하는 현상
+- `exchange` 정보를 `topic`으로 전환하는 과정에서 발생한 이슈
+
 ## ![icons8-채팅-36](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/assets/67618667/3509ba75-4eec-4829-9516-4b77a3ff84db) 프로젝트 사용기술
 `Spring Boot` `Java 17` `JPA` `MongoDB` `Docker` `Intellij IDEA`
 
