@@ -35,5 +35,5 @@
 * [Message Queue에 대한 이론 정리](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/wiki/Message-Queue%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%EB%A1%A0-%EC%A0%95%EB%A6%AC)
 * [Message Queue을 적용하고자한 이유](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/wiki/5.-Message-Queue%EB%A5%BC-%EC%A0%81%EC%9A%A9%ED%95%9C-%EC%9D%B4%EC%9C%A0)
 * [RabbitMQ 선택 이유](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/wiki/RabbitMQ%EB%A5%BC-%EC%84%A0%ED%83%9D%ED%95%9C-%EC%9D%B4%EC%9C%A0)
-* Message Queue 환경 설정 어려웠던 것들 (작성중)
+* Spring - Message Queue 설정
 * 채팅 설정 과정에서 발생한 오류들에 대한 정리 (작성중)
