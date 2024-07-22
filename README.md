@@ -14,6 +14,7 @@
 
 
 ## ![icons8-채팅-36](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/assets/67618667/3509ba75-4eec-4829-9516-4b77a3ff84db) ISSUE
+- [RabbitMQ Exchange Type에 대한 지식 부족으로 인한 @RabbitListner 받지 못하는 이슈에 대한 이론 정리(1)](https://ghgo195.tistory.com/63)
 - [채팅에서 입력한 값을 `topic exchange`로 설정하여 전달하였지만 `queue 결과값`을 `@RabbitListener`로 받지 못하는 현상](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/issues/2)
 - [`Direct` message type에서 `topic` message type으로 전환시 오류 발생 이슈](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/issues/4)
 
