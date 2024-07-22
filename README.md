@@ -15,7 +15,7 @@
 
 ## ![icons8-채팅-36](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/assets/67618667/3509ba75-4eec-4829-9516-4b77a3ff84db) ISSUE
 - [RabbitMQ Exchange Type에 대한 지식 부족으로 인한 @RabbitListner 받지 못하는 이슈에 대한 이론 정리(1)](https://ghgo195.tistory.com/63)
-- [채팅에서 입력한 값을 `topic exchange`로 설정하여 전달하였지만 `queue 결과값`을 `@RabbitListener`로 받지 못하는 현상](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/issues/2)
+- [채팅에서 입력한 값을 `topic exchange`로 설정하여 전달하였지만 `queue 결과값`을 `@RabbitListener`로 받지 못하는 현상](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/wiki/Issue(1).--Queue-%EB%A9%94%EC%84%B8%EC%A7%80-%EB%A7%A4%EC%B9%AD-%EC%95%88%EB%90%98%EB%8D%98-%EC%9D%B4%EC%8A%88-%EC%9B%90%EC%9D%B8-%EB%B0%8F-%ED%95%B4%EA%B2%B0)
 - [`Direct` message type에서 `topic` message type으로 전환시 오류 발생 이슈](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/issues/4)
 
 ## ![icons8-채팅-36](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/assets/67618667/3509ba75-4eec-4829-9516-4b77a3ff84db) 프로젝트 사용기술
