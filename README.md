@@ -19,7 +19,7 @@
 - [`Direct` message type에서 `topic` message type으로 전환시 오류 발생 이슈](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/wiki/Issue(2).-RabbitMQConfig.java---direct-%EC%97%90%EC%84%9C-topic-exchange-type%EC%9C%BC%EB%A1%9C-%EC%A0%84%ED%99%98-%EC%8B%9C-%EC%98%A4%EB%A5%98-%EB%B0%9C%EC%83%9D-%EC%9D%B4%EC%8A%88)
 
 ## ![icons8-채팅-36](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/assets/67618667/3509ba75-4eec-4829-9516-4b77a3ff84db) 프로젝트 사용기술
-`Spring Boot` `Java 17` `JPA` `MongoDB` `Docker` `Intellij IDEA`
+`Spring Boot` `Java 17` `JPA` `MongoDB`, `RabbitMQ`, `STOMP` `Docker` `Intellij IDEA`
 
 
 ## ![icons8-채팅-36](https://github.com/rhkdgur/Chatting-Stomp-with-RabbitMQ-/assets/67618667/3509ba75-4eec-4829-9516-4b77a3ff84db) 작업 기간
